@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:expense_tracker/controller/categoryManagementController.dart';
 
-class CategoryManagement extends StatelessWidget {
+class CategoryManagement extends GetView<CategoryManagementController> {
   CategoryManagement({super.key});
 
-  final CategoryManagementController controller =
-      Get.put(CategoryManagementController());
   final TextEditingController _categoryController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 

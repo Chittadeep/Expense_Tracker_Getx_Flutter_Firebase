@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 
-class Homecontroller extends GetxController {
+class HomeController extends GetxController {
   int _index = 0;
 
-  void updateindex(i) {
+  void updateindex(int i) {
     _index = i;
     update();
   }
 
-  get index => _index;
+  int get index => _index;
 }

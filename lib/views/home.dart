@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:expense_tracker/controller/homeController.dart';
 import 'package:expense_tracker/views/categoryManagement.dart';
 import 'package:expense_tracker/views/expenseInput.dart';
@@ -6,7 +8,7 @@ import 'package:expense_tracker/views/summaryReport.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Home extends StatelessWidget {
+class Home extends GetView<HomeController> {
   Home({super.key});
 
   List<BottomNavigationBarItem> navigationBarItems = const [
@@ -19,25 +21,23 @@ class Home extends StatelessWidget {
   List<StatelessWidget> views = [
     const TransactionHistory(),
     CategoryManagement(),
-    const ExpenseInput(),
+    AddExpenseScreen(),
     const SummaryReport()
   ];
 
   @override
   Widget build(BuildContext context) {
-    //Homecontroller controller = Get.put(Homecontroller());
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense Tracker'),
       ),
-      bottomNavigationBar: GetBuilder<Homecontroller>(
+      bottomNavigationBar: GetBuilder<HomeController>(
         builder: (controller) => BottomNavigationBar(
             currentIndex: controller.index,
             onTap: (value) => controller.updateindex(value),
             items: navigationBarItems),
       ),
-      body: GetBuilder<Homecontroller>(
+      body: GetBuilder<HomeController>(
           builder: (controller) => views[controller.index]),
     );
   }

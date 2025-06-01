@@ -1,13 +1,12 @@
 import 'package:get/get.dart';
 
 class Homecontroller extends GetxController {
-  RxInt index = 0.obs;
+  int _index = 0;
 
-  updateIndex(int i) {
-    index.value = i;
+  void updateindex(i) {
+    _index = i;
+    update();
   }
 
-  int getIndex() {
-    return index.value;
-  }
+  get index => _index;
 }

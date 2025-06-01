@@ -16,26 +16,29 @@ class Home extends StatelessWidget {
     BottomNavigationBarItem(icon: Icon(Icons.summarize), label: 'Summary')
   ];
 
-  List<StatelessWidget> views = const [
-    TransactionHistory(),
-    Categorymanagement(),
-    ExpenseInput(),
-    SummaryReport()
+  List<StatelessWidget> views = [
+    const TransactionHistory(),
+    CategoryManagement(),
+    const ExpenseInput(),
+    const SummaryReport()
   ];
 
   @override
   Widget build(BuildContext context) {
-    Homecontroller controller = Get.put(Homecontroller());
+    //Homecontroller controller = Get.put(Homecontroller());
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense Tracker'),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: controller.getIndex(),
-          onTap: (value) => controller.updateIndex(value),
-          items: navigationBarItems),
-      body: Obx(() => views[controller.getIndex()]),
+      bottomNavigationBar: GetBuilder<Homecontroller>(
+        builder: (controller) => BottomNavigationBar(
+            currentIndex: controller.index,
+            onTap: (value) => controller.updateindex(value),
+            items: navigationBarItems),
+      ),
+      body: GetBuilder<Homecontroller>(
+          builder: (controller) => views[controller.index]),
     );
   }
 }

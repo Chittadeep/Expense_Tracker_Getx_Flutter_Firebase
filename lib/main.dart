@@ -1,3 +1,4 @@
+import 'package:expense_tracker/utils/AppBindings.dart';
 import 'package:expense_tracker/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Expense Tracker',
       home: Home(),
+      initialBinding: AppBindings(),
       theme: ThemeData(
           iconTheme: const IconThemeData(color: Colors.purple),
           appBarTheme: const AppBarTheme(

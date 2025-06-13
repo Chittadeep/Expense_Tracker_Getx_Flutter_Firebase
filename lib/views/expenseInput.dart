@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:expense_tracker/controller/categoryManagementController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,11 +13,11 @@ class AddExpenseScreen extends GetView<ExpenseController> {
   final _descriptionController = TextEditingController();
   final _amountController = TextEditingController();
 
-  final List<String> _categories = //[];
-      Get.find<CategoryManagementController>().categories;
-
   @override
   Widget build(BuildContext context) {
+    final List<String> _categories = //[];
+        Get.find<CategoryManagementController>().categories;
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -192,6 +194,9 @@ class AddExpenseScreen extends GetView<ExpenseController> {
       if (controller.selectedDate == null ||
           controller.selectedTime == null ||
           controller.selectedCategory == null) {
+        // log(controller.selectedCategory.toString());
+        // log(controller.selectedTime.toString());
+        // log(controller.selectedDate.toString());
         Get.snackbar(
           'Error',
           'Please fill all fields',
@@ -213,6 +218,7 @@ class AddExpenseScreen extends GetView<ExpenseController> {
 
       // Save the expense
       controller.addExpense(
+        category: controller.selectedCategory!,
         description: _descriptionController.text,
         amount: double.parse(_amountController.text),
         dateTime: fullDateTime,

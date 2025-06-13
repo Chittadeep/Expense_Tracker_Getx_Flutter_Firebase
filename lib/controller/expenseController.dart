@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:expense_tracker/models/expense_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,6 +8,8 @@ class ExpenseController extends GetxController {
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
   String? selectedCategory;
+
+  List<ExpenseModel> expenses = [];
 
   void setSelectedDate(DateTime date) {
     selectedDate = date;
@@ -29,12 +34,15 @@ class ExpenseController extends GetxController {
   }
 
   void addExpense({
+    required String category,
     required String description,
     required double amount,
     required DateTime dateTime,
   }) {
     // Implement your expense saving logic here
     // This might involve adding to a database or state management
-    print('Expense added: $description, $amount, $dateTime, $selectedCategory');
+    expenses.add(ExpenseModel(category, amount, description, dateTime));
+    log('Expense added: $description, $amount, $dateTime, $selectedCategory');
+    update();
   }
 }

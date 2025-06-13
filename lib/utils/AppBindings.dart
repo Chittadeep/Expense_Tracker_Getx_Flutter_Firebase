@@ -7,9 +7,9 @@ class AppBindings extends Bindings {
   @override
   void dependencies() {
     // Initialize all your controllers here
-    Get.put(CategoryManagementController());
-    Get.put(ExpenseController());
-    Get.put(HomeController());
+    Get.lazyPut(()=>CategoryManagementController(), fenix: true);
+    Get.lazyPut(()=>ExpenseController(), fenix: true);
+    Get.lazyPut(()=>HomeController(), fenix: true);
     // Add more controllers as needed
   }
 }
